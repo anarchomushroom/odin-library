@@ -21,6 +21,8 @@ function render() {
 
     myLibrary.forEach(book => {
         const card = document.createElement("div")
+        const removeButton = document.createElement("button");
+
         card.className = "book-card";
         card.dataset.id = myLibrary.indexOf(book);
         card.innerHTML =
@@ -29,7 +31,22 @@ function render() {
         <p class="book-pages">${book.pages} pages</p>
         <p class="book-read">${book.read}</p>`
 
+        removeButton.className = "del-btn";
+        removeButton.textContent = "Delete";
+        removeButton.addEventListener("click", (e) => {
+            const i = e.target.parentNode.dataset.id;
+
+            myLibrary.forEach(book => {
+                if (myLibrary.indexOf(book) == i) {
+                    myLibrary.splice(i, 1);
+                    render();
+                    return;
+                }
+            })
+        })
+
         container.appendChild(card);
+        card.appendChild(removeButton);
     });
 }
 
@@ -38,7 +55,9 @@ addBookForm.addEventListener("submit", (e) => {
     addBookToLibrary(title.value, author.value, pages.value, read.value);
     addBookForm.reset();
     render();
-})
+});
+
+
 
 // const theHobbit = new Book("The Hobbit", "JRR Tolkien", 284, "Not Read");
 // const bible = new Book("The Bible", "Jesus", 666, "Read");
