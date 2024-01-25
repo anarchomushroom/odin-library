@@ -1,6 +1,6 @@
 const myLibrary = [];
-
 const container = document.querySelector(".container");
+const addBookForm = document.querySelector(".add-book-form")
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -11,27 +11,39 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
-    render()
 };
 
+
 function render() {
+    while (container.firstChild) {
+        container.removeChild(container.lastChild)
+    }
+
     myLibrary.forEach(book => {
         const card = document.createElement("div")
+        card.className = "book-card";
         card.dataset.id = myLibrary.indexOf(book);
-        container.appendChild(card);
-        
         card.innerHTML =
         `<h3 class="book-title">${book.title}</h3>
         <p class="book-author">By ${book.author}</p>
         <p class="book-pages">${book.pages} pages</p>
         <p class="book-read">${book.read}</p>`
+
+        container.appendChild(card);
     });
 }
 
-const theHobbit = new Book("The Hobbit", "JRR Tolkien", 284, "Not Read");
-const bible = new Book("The Bible", "Jesus", 666, "Read");
+addBookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addBookToLibrary(title.value, author.value, pages.value, read.value);
+    addBookForm.reset();
+    render();
+})
 
-myLibrary.push(theHobbit);
-myLibrary.push(bible);
+// const theHobbit = new Book("The Hobbit", "JRR Tolkien", 284, "Not Read");
+// const bible = new Book("The Bible", "Jesus", 666, "Read");
 
-render();
+// myLibrary.push(theHobbit);
+// myLibrary.push(bible);
+
+// render();
