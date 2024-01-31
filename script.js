@@ -22,8 +22,9 @@ function render() {
     myLibrary.forEach(book => {
         const card = document.createElement("div")
         const removeButton = document.createElement("button");
+        const toggleRead = document.createElement("button");
 
-        card.className = "book-card";
+        card.className = "card";
         card.dataset.id = myLibrary.indexOf(book);
         card.innerHTML =
         `<h3 class="book-title">${book.title}</h3>
@@ -59,10 +60,7 @@ addBookForm.addEventListener("submit", (e) => {
 
 
 
-// const theHobbit = new Book("The Hobbit", "JRR Tolkien", 284, "Not Read");
-// const bible = new Book("The Bible", "Jesus", 666, "Read");
+addBookToLibrary("The Hobbit", "JRR Tolkien", 284, "Not Read");
+addBookToLibrary("The Bible", "Jesus", 666, "Read");
 
-// myLibrary.push(theHobbit);
-// myLibrary.push(bible);
-
-// render();
+render();
