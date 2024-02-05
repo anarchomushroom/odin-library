@@ -13,6 +13,13 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 };
 
+function toggleStatus(book) {
+    if (book.read === "Read") {
+        book.read = "Not Read";
+    } else if (book.read === "Not Read") {
+        book.read = "Read";
+    };
+};
 
 function render() {
     while (container.firstChild) {
@@ -46,8 +53,18 @@ function render() {
             })
         })
 
+        toggleRead.textContent = "Toggle Status";
+        toggleRead.className = "toggle-btn";
+        toggleRead.addEventListener("click", (e) => {
+            const i = e.target.parentNode.dataset.id;
+            const book = myLibrary[i];
+            toggleStatus(book);
+            render();
+        })
+
         container.appendChild(card);
         card.appendChild(removeButton);
+        card.appendChild(toggleRead)
     });
 }
 
