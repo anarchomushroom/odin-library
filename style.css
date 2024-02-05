@@ -49,10 +49,6 @@ table {
 	border-spacing: 0;
 }
 
-/* * {
-    border: blue 1px solid;
-} */
-
 body {
     display: flex;
     min-height: 100vh;

@@ -75,9 +75,4 @@ addBookForm.addEventListener("submit", (e) => {
     render();
 });
 
-
-
-addBookToLibrary("The Hobbit", "JRR Tolkien", 284, "Not Read");
-addBookToLibrary("The Bible", "Jesus", 666, "Read");
-
 render();
